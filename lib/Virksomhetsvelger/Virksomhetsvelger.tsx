@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { Accordion, BodyShort, Button, Detail, Search } from "@navikt/ds-react";
-import { CaretDownIcon, CaretUpIcon, XMarkIcon } from "@navikt/aksel-icons";
+import { ChevronDownIcon, ChevronUpIcon, XMarkIcon } from "@navikt/aksel-icons";
 import FocusTrap from "focus-trap-react";
 import Dropdown from "../DropDown/Dropdown";
 import { useTastaturNavigasjon } from "./useTastaturNavigasjon";
@@ -37,7 +37,7 @@ const Velger = ({ friKomponent }: { friKomponent?: boolean }) => {
     (acc, org) => acc + org.underenheter.length,
     0,
   );
-  const OpenCloseIcon = åpen ? CaretUpIcon : CaretDownIcon;
+  const OpenCloseIcon = åpen ? ChevronUpIcon : ChevronDownIcon;
 
   useEffect(() => {
     if (åpen) {
@@ -56,9 +56,7 @@ const Velger = ({ friKomponent }: { friKomponent?: boolean }) => {
 
   return (
     valgtOrganisasjon && (
-      <div
-        className={`${friKomponent ? styles.virksomhetsvelgerFriKomponent : ""}`}
-      >
+      <div className={`${friKomponent ? styles.friKomponent : ""}`}>
         <Button
           className={styles.virksomhetsvelger}
           onClick={() => setÅpen((prev) => !prev)}
@@ -70,9 +68,9 @@ const Velger = ({ friKomponent }: { friKomponent?: boolean }) => {
           aria-haspopup={true}
           aria-expanded={åpen}
         >
-          <div className={styles.virksomhetsvelgerInnhold}>
-            <div className={styles.virksomhetsvelgerTekst}>
-              <BodyShort className={styles.virksomhetsvelgerVirksomhetsnavn}>
+          <div className={styles.innhold}>
+            <div className={styles.tekst}>
+              <BodyShort className={styles.virksomhetsnavn}>
                 {valgtOrganisasjon.navn}
               </BodyShort>
               <BodyShort>
@@ -113,8 +111,8 @@ const Velger = ({ friKomponent }: { friKomponent?: boolean }) => {
               },
             }}
           >
-            <div className={styles.virksomhetsvelgerPopup}>
-              <div className={styles.virksomhetsvelgerPopupHeader}>
+            <div className={styles.popup}>
+              <div className={styles.popupHeader}>
                 <Search
                   ref={searchRef}
                   variant="simple"
@@ -128,7 +126,7 @@ const Velger = ({ friKomponent }: { friKomponent?: boolean }) => {
                 <Button
                   variant="tertiary"
                   aria-label="lukk virksomhetsvelger"
-                  className={styles.virksomhetsvelgerPopupHeaderXbtn}
+                  className={styles.popupHeaderXbtn}
                   onClick={() => setÅpen(false)}
                 >
                   <XMarkIcon aria-hidden={true} />
@@ -144,10 +142,7 @@ const Velger = ({ friKomponent }: { friKomponent?: boolean }) => {
                 )}
               </Detail>
               <Accordion style={{ display: "flex", overflow: "auto" }}>
-                <div
-                  className={styles.virksomhetsvelgerEnheter}
-                  onKeyDown={handleKeyDown}
-                >
+                <div className={styles.enheter} onKeyDown={handleKeyDown}>
                   {organisasjonerMedState.map((org) => (
                     <EnhetMedUnderenheter
                       valgtEnhetErIListe={organisasjonerMedState.some(

@@ -1,4 +1,5 @@
-import "./App.css";
+import { fakerNB_NO as faker } from "@faker-js/faker";
+import styles from "./App.module.css";
 
 // https://nodejs.org/api/packages.html#packages_self_referencing_a_package_using_its_name
 import { Banner, Virksomhetsvelger } from "@navikt/virksomhetsvelger";
@@ -8,7 +9,10 @@ import "@navikt/ds-css";
 
 import { BellIcon } from "@navikt/aksel-icons";
 import { useState } from "react";
-import { Box, HStack, TextField } from "@navikt/ds-react";
+import { Box, HGrid, TextField, VStack } from "@navikt/ds-react";
+
+const orgnr = () =>
+  faker.number.int({ min: 100000000, max: 999999999 }).toString();
 
 /*
 TODO:
@@ -41,7 +45,7 @@ function App() {
     navn: string;
   } | null>(null);
   return (
-    <div className="eksempelapp">
+    <div className={styles.eksempelapp}>
       <Box background="bg-default">
         <h1>Demo App: Eksempler på bruk av virksomhetsvelger</h1>
       </Box>
@@ -58,40 +62,38 @@ function App() {
           organisasjoner={MOCK_ORGANISASJONER}
           onChange={setValgtVirksomhet}
         />
-        <BellIcon title="a11y-title" fontSize="1.5rem" />
+        <BellIcon title="a11y-title" fontSize="2rem" />
       </Banner>
 
       <Box background="bg-default">
-        <HStack gap="4">
-          <Box>
-            <h2>Input organisasjoner</h2>
-
-            <pre>{JSON.stringify(MOCK_ORGANISASJONER, null, 2)}</pre>
-          </Box>
-          <Box>
+        <HGrid gap="6" columns={2} maxWidth="sm">
+          <Box className={styles.json}>
             <h2>Valgt virksomhet</h2>
             <pre>{JSON.stringify(valgtVirksomhet, null, 2)}</pre>
           </Box>
-        </HStack>
+          <Box className={styles.json}>
+            <h2>Organisasjoner</h2>
+
+            <pre>{JSON.stringify(MOCK_ORGANISASJONER, null, 2)}</pre>
+          </Box>
+        </HGrid>
       </Box>
 
       <Box background="bg-default" maxWidth="600px" padding="10">
-        <h2>Velger som fri komponent, feks til bruk i skjema</h2>
-        <Virksomhetsvelger
-          organisasjoner={MOCK_ORGANISASJONER}
-          onChange={setValgtVirksomhetFri}
-          friKomponent={true}
-        />
-        {valgtVirksomhetFri && (
-          <>
-            <TextField
-              label="Org. nr."
-              value={valgtVirksomhetFri.orgNr}
-              readOnly
-            />
-            <TextField label="Navn" value={valgtVirksomhetFri.navn} readOnly />
-          </>
-        )}
+        <VStack gap="4">
+          <h2>Velger som fri komponent uten banner</h2>
+          <Virksomhetsvelger
+            organisasjoner={MOCK_ORGANISASJONER}
+            onChange={setValgtVirksomhetFri}
+            friKomponent={true}
+          />
+          <TextField
+            label="Org. nr."
+            value={valgtVirksomhetFri?.orgNr}
+            readOnly
+          />
+          <TextField label="Navn" value={valgtVirksomhetFri?.navn} readOnly />
+        </VStack>
       </Box>
 
       <h2>Andre tilgjengelige komponenter</h2>
@@ -108,42 +110,42 @@ export default App;
 
 const MOCK_ORGANISASJONER = [
   {
-    orgNr: "1",
-    navn: "grandparent (skip)",
+    orgNr: orgnr(),
+    navn: faker.company.name(),
     altinn3Tilganger: [],
     altinn2Tilganger: [],
     underenheter: [
       {
-        orgNr: "1.1",
-        navn: "parent",
+        orgNr: orgnr(),
+        navn: faker.company.name(),
         underenheter: [
           {
-            orgNr: "1.1.1",
-            navn: "child (skip)",
+            orgNr: orgnr(),
+            navn: faker.company.name(),
             underenheter: [
               {
-                orgNr: "1.1.1.1",
-                navn: "childs child",
+                orgNr: orgnr(),
+                navn: faker.company.name(),
                 underenheter: [
                   {
-                    orgNr: "1.1.1.1.1",
-                    navn: "childs childs child",
+                    orgNr: orgnr(),
+                    navn: faker.company.name(),
                     underenheter: [],
                   },
                   {
-                    orgNr: "1.1.1.1.2",
-                    navn: "childs childs child",
+                    orgNr: orgnr(),
+                    navn: faker.company.name(),
                     underenheter: [],
                   },
                 ],
               },
               {
-                orgNr: "1.1.1.2",
-                navn: "childs child 2",
+                orgNr: orgnr(),
+                navn: faker.company.name(),
                 underenheter: [
                   {
-                    orgNr: "1.1.1.2.1",
-                    navn: "childs childs 2 child",
+                    orgNr: orgnr(),
+                    navn: faker.company.name(),
                     underenheter: [],
                   },
                 ],
@@ -151,8 +153,8 @@ const MOCK_ORGANISASJONER = [
             ],
           },
           {
-            orgNr: "1.1.2",
-            navn: "parents child",
+            orgNr: orgnr(),
+            navn: faker.company.name(),
             underenheter: [],
           },
         ],
@@ -160,8 +162,8 @@ const MOCK_ORGANISASJONER = [
     ],
   },
   {
-    orgNr: "2",
+    orgNr: orgnr(),
     underenheter: [],
-    navn: "orphan",
+    navn: faker.company.name(),
   },
 ];

@@ -1,0 +1,36 @@
+.enhet :global(.navds-accordion__content),
+.enhet :global(.navds-accordion__header),
+.enhet :global(.navds-accordion__header:hover),
+.enhet :global(.navds-accordion__header:active){
+    border: none;
+}
+
+.enhet :global(.navds-accordion__header) {
+    align-items: center;
+    border-radius: var(--a-border-radius-medium);
+}
+
+.enhet :global(.navds-accordion__header:focus) {
+    box-shadow: inset var(--a-shadow-focus) !important;
+}
+
+.enhet :global(.navds-accordion__content) {
+    padding: var(--a-spacing-2);
+}
+
+.enhet {
+    border-radius: var(--a-border-radius-medium);
+    background-color: white;
+}
+
+.underenheter {
+    display: flex;
+    flex-direction: column;
+    gap: var(--a-spacing-1);
+    padding: 0 0 0 16px;
+    list-style: none;
+}
+
+.underenheter ul {
+    padding: 0;
+}

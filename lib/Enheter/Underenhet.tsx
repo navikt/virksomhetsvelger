@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 import { BodyShort, Button } from "@navikt/ds-react";
-import styles from "../Virksomhetsvelger/Virksomhetsvelger.module.css";
+import styles from "./Underenhet.module.css";
 import { formatOrgNr } from "../Virksomhetsvelger/util.ts";
 import { CheckmarkCircleIcon } from "@navikt/aksel-icons";
 import { OrganisasjonMedState } from "../Virksomhetsvelger/useTastaturNavigasjon.ts";
@@ -21,11 +21,11 @@ export const Underenhet = forwardRef<HTMLButtonElement, UnderenhetProps>(
       variant="tertiary"
       onClick={() => onClick(underenhet)}
       onFocus={onFocus}
-      className={styles.virksomhetsvelgerUnderenhetInnhold}
+      className={styles.underenhetInnhold}
     >
-      <div className={styles.virksomhetsvelgerEnhet}>
-        <div className={styles.virksomhetsvelgerEnhetTekst}>
-          <BodyShort className={styles.virksomhetsvelgerEnhetTittel}>
+      <div className={styles.underenhet}>
+        <div className={styles.underenhetTekst}>
+          <BodyShort className={styles.underenhetTittel}>
             {underenhet.navn}
           </BodyShort>
           <BodyShort>
@@ -37,7 +37,7 @@ export const Underenhet = forwardRef<HTMLButtonElement, UnderenhetProps>(
           <CheckmarkCircleIcon
             aria-hidden={true}
             fontSize="1.5rem"
-            className={styles.virksomhetsvelgerUnderenhetValgtIkon}
+            className={styles.underenhetValgtIkon}
           />
         )}
       </div>

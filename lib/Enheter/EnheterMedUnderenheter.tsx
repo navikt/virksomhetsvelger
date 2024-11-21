@@ -1,6 +1,6 @@
 import { OrganisasjonMedState } from "../Virksomhetsvelger/useTastaturNavigasjon.ts";
 import { ForwardedRef } from "react";
-import styles from "../Virksomhetsvelger/Virksomhetsvelger.module.css";
+import styles from "./EnheterMedUnderenheter.module.css";
 import { Accordion } from "@navikt/ds-react";
 import { Hovedenhet } from "./Hovedenhet.tsx";
 import { Underenhet } from "./Underenhet.tsx";
@@ -22,7 +22,7 @@ export const EnhetMedUnderenheter = ({
 }) => {
   return (
     <>
-      <div className={styles.virksomhetsvelgerJuridiskEnhet} role="group">
+      <div className={styles.enhet} role="group">
         <Accordion.Item open={organisasjon.ekspandert}>
           <Accordion.Header
             tabIndex={!valgtEnhetErIListe ? 0 : -1}
@@ -49,7 +49,7 @@ export const EnhetMedUnderenheter = ({
           </Accordion.Header>
           <Accordion.Content>
             <div
-              className={styles.virksomhetsvelgerUnderenheter}
+              className={styles.underenheter}
               id={`underenheter-${organisasjon.orgNr}`}
             >
               {organisasjon.underenheter.map((underenhet) => (

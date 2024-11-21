@@ -1,0 +1,14 @@
+.eksempelapp {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--a-gray-100);
+    min-height: 100vh;
+    gap: 1rem;
+    margin: 0 auto 2rem;
+}
+
+.json {
+    max-height: 30vh;
+    min-width: 45vw;
+    overflow: scroll;
+}
