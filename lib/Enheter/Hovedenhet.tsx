@@ -19,7 +19,7 @@ export const Hovedenhet = ({
         </BodyShort>
         <BodyShort>
           <span>Org.nr. </span>
-          <span>{formatOrgNr(hovedenhet.orgNr)}</span>
+          <span>{formatOrgNr(hovedenhet.orgnr)}</span>
         </BodyShort>
         <BodyShort
           className={styles.hovedenhetBeskrivelse}

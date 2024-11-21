@@ -12,7 +12,7 @@ export const VirksomhetsvelgerProvider = ({
 }: {
   organisasjonstre: Organisasjon[];
   onOrganisasjonChange: (
-    organisasjon: Pick<Organisasjon, "orgNr" | "navn">,
+    organisasjon: Pick<Organisasjon, "orgnr" | "navn">,
   ) => void;
   children: ReactNode;
 }) => {
@@ -36,21 +36,21 @@ export const VirksomhetsvelgerProvider = ({
     const matches = filterRecursive(
       organisasjonstre,
       (o) =>
-        o.orgNr.includes(søketekst) ||
+        o.orgnr.includes(søketekst) ||
         o.navn.toLowerCase().includes(søketekst.toLowerCase()),
     );
     setAktivtOrganisasjonstre(matches);
   }, [organisasjonstre, søketekst, setAktivtOrganisasjonstre]);
 
   useEffect(() => {
-    if (valgtOrganisasjon?.orgNr) {
-      const { orgNr, navn } = valgtOrganisasjon;
+    if (valgtOrganisasjon?.orgnr) {
+      const { orgnr, navn } = valgtOrganisasjon;
       onOrganisasjonChange({
-        orgNr,
+        orgnr,
         navn,
       });
     }
-  }, [onOrganisasjonChange, valgtOrganisasjon, valgtOrganisasjon?.orgNr]);
+  }, [onOrganisasjonChange, valgtOrganisasjon, valgtOrganisasjon?.orgnr]);
 
   if (valgtOrganisasjon === undefined) {
     return null;

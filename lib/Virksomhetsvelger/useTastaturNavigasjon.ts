@@ -52,14 +52,14 @@ const reducer = (
     case "FOKUSER_ENHET":
       newState = mapRecursive(state, (org) => ({
         ...org,
-        fokusert: org.orgNr === action.payload.orgNr,
+        fokusert: org.orgnr === action.payload.orgnr,
       }));
       break;
 
     case "FOKUSER_FØRSTE_ENHET":
       newState = mapRecursive(state, (org) => ({
         ...org,
-        fokusert: org.orgNr === state[0].orgNr,
+        fokusert: org.orgnr === state[0].orgnr,
       }));
       break;
 
@@ -67,12 +67,12 @@ const reducer = (
       newState = mapRecursive(state, (org) => ({
         ...org,
         fokusert:
-          org.orgNr ===
+          org.orgnr ===
           (state[state.length - 1].ekspandert
             ? state[state.length - 1].underenheter[
                 state[state.length - 1].underenheter.length - 1
-              ].orgNr
-            : state[state.length - 1].orgNr),
+              ].orgnr
+            : state[state.length - 1].orgnr),
       }));
       break;
 
@@ -80,11 +80,11 @@ const reducer = (
       newState = mapRecursive(state, (org) => ({
         ...org,
         ekspandert:
-          org.orgNr === action.payload.orgNr ? !org.ekspandert : org.ekspandert,
+          org.orgnr === action.payload.orgnr ? !org.ekspandert : org.ekspandert,
         underenheter: org.underenheter.map((underenhet) => ({
           ...underenhet,
           ekspandert:
-            org.orgNr === action.payload.orgNr
+            org.orgnr === action.payload.orgnr
               ? !org.ekspandert
               : org.ekspandert,
         })),
@@ -107,18 +107,18 @@ const initState = ({
   valgtOrgNr: string;
 }): OrganisasjonMedState[] => {
   return mapRecursive(aktivtOrganisasjonstre, (org) => {
-    const ekspandert = org.underenheter.some((o) => o.orgNr === valgtOrgNr);
+    const ekspandert = org.underenheter.some((o) => o.orgnr === valgtOrgNr);
     return {
       ...org,
       index: -1,
-      fokusert: org.orgNr === valgtOrgNr,
-      valgt: org.orgNr === valgtOrgNr,
+      fokusert: org.orgnr === valgtOrgNr,
+      valgt: org.orgnr === valgtOrgNr,
       ekspandert: ekspandert,
       underenheter: org.underenheter.map((u) => ({
         ...u,
         ekspandert: ekspandert,
-        fokusert: u.orgNr === valgtOrgNr,
-        valgt: u.orgNr === valgtOrgNr,
+        fokusert: u.orgnr === valgtOrgNr,
+        valgt: u.orgnr === valgtOrgNr,
       })) as OrganisasjonMedState[],
     };
   });
@@ -147,7 +147,7 @@ export const useTastaturNavigasjon = (): UseTastaturNavigasjon => {
     reducer,
     {
       aktivtOrganisasjonstre,
-      valgtOrgNr: valgtOrganisasjon.orgNr,
+      valgtOrgNr: valgtOrganisasjon.orgnr,
     },
     initState,
   );
@@ -157,22 +157,22 @@ export const useTastaturNavigasjon = (): UseTastaturNavigasjon => {
       type: "RESET_STATE",
       payload: {
         aktivtOrganisasjonstre,
-        valgtOrgNr: valgtOrganisasjon.orgNr,
+        valgtOrgNr: valgtOrganisasjon.orgnr,
       },
     });
-  }, [aktivtOrganisasjonstre, valgtOrganisasjon.orgNr]);
+  }, [aktivtOrganisasjonstre, valgtOrganisasjon.orgnr]);
 
   const aktivtOrganisasjonstreJson = JSON.stringify(aktivtOrganisasjonstre);
   useEffect(() => {
     // Reset state when the active tree changes
     resetState();
-  }, [aktivtOrganisasjonstreJson, valgtOrganisasjon.orgNr, resetState]);
+  }, [aktivtOrganisasjonstreJson, valgtOrganisasjon.orgnr, resetState]);
 
   const fokusertEnhet =
     findRecursive(organisasjonerMedState, ({ fokusert }) => fokusert) ??
     findRecursive(
       organisasjonerMedState,
-      ({ orgNr }) => valgtOrganisasjon.orgNr === orgNr,
+      ({ orgnr }) => valgtOrganisasjon.orgnr === orgnr,
     )!;
   const fokuserFørsteEnhet = () => {
     dispatch({ type: "FOKUSER_FØRSTE_ENHET" });
@@ -237,7 +237,7 @@ export const useTastaturNavigasjon = (): UseTastaturNavigasjon => {
         ({ index, ekspandert, underenheter }) =>
           index < fokusertEnhet.index &&
           ekspandert &&
-          underenheter.some((u) => u.orgNr === fokusertEnhet.orgNr),
+          underenheter.some((u) => u.orgnr === fokusertEnhet.orgnr),
       );
       if (nextEnhet !== undefined) {
         fokuserEnhet(nextEnhet);

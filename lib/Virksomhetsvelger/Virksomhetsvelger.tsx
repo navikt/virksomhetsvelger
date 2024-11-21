@@ -52,7 +52,7 @@ const Velger = ({ friKomponent }: { friKomponent?: boolean }) => {
       setSøketekst("");
       resetState();
     }
-  }, [åpen, fokusertEnhet?.orgNr, resetState, setSøketekst]);
+  }, [åpen, fokusertEnhet?.orgnr, resetState, setSøketekst]);
 
   return (
     valgtOrganisasjon && (
@@ -63,7 +63,7 @@ const Velger = ({ friKomponent }: { friKomponent?: boolean }) => {
           type="button"
           variant="secondary"
           ref={buttonRef}
-          aria-label={`Virksomhetsmeny. Valgt virksomhet er ${valgtOrganisasjon.navn} med virksomhetsnummer ${valgtOrganisasjon.orgNr}`}
+          aria-label={`Virksomhetsmeny. Valgt virksomhet er ${valgtOrganisasjon.navn} med virksomhetsnummer ${valgtOrganisasjon.orgnr}`}
           aria-controls={dropdownId}
           aria-haspopup={true}
           aria-expanded={åpen}
@@ -74,7 +74,7 @@ const Velger = ({ friKomponent }: { friKomponent?: boolean }) => {
                 {valgtOrganisasjon.navn}
               </BodyShort>
               <BodyShort>
-                Org.nr. {formatOrgNr(valgtOrganisasjon.orgNr)}
+                Org.nr. {formatOrgNr(valgtOrganisasjon.orgnr)}
               </BodyShort>
             </div>
             <OpenCloseIcon
@@ -147,12 +147,12 @@ const Velger = ({ friKomponent }: { friKomponent?: boolean }) => {
                     <EnhetMedUnderenheter
                       valgtEnhetErIListe={organisasjonerMedState.some(
                         (o) =>
-                          o.orgNr === valgtOrganisasjon.orgNr ||
+                          o.orgnr === valgtOrganisasjon.orgnr ||
                           o.underenheter.some(
-                            (u) => u.orgNr === valgtOrganisasjon.orgNr,
+                            (u) => u.orgnr === valgtOrganisasjon.orgnr,
                           ),
                       )}
-                      key={org.orgNr}
+                      key={org.orgnr}
                       enhetRef={valgtEnhetRef}
                       organisasjon={org}
                       onUnderenhetValgt={(org) => {
@@ -176,7 +176,7 @@ const Velger = ({ friKomponent }: { friKomponent?: boolean }) => {
 };
 
 export interface ValgtVirksomhet {
-  orgNr: string;
+  orgnr: string;
   navn: string;
 }
 

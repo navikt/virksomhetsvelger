@@ -1,7 +1,7 @@
 import { createContext } from "react";
 
 export interface Organisasjon {
-  orgNr: string;
+  orgnr: string;
   navn: string;
   underenheter: Organisasjon[];
 }

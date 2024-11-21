@@ -35,7 +35,7 @@ export const EnhetMedUnderenheter = ({
                 onFocus(organisasjon);
               }
             }}
-            aria-owns={`underenheter-${organisasjon.orgNr}`}
+            aria-owns={`underenheter-${organisasjon.orgnr}`}
             style={{
               backgroundColor: organisasjon.ekspandert
                 ? "var(--a-surface-action-subtle"
@@ -50,11 +50,11 @@ export const EnhetMedUnderenheter = ({
           <Accordion.Content>
             <div
               className={styles.underenheter}
-              id={`underenheter-${organisasjon.orgNr}`}
+              id={`underenheter-${organisasjon.orgnr}`}
             >
               {organisasjon.underenheter.map((underenhet) => (
                 <Underenhet
-                  key={underenhet.orgNr}
+                  key={underenhet.orgnr}
                   underenhet={underenhet}
                   ref={underenhet.fokusert ? enhetRef : null}
                   onClick={() => onUnderenhetValgt(underenhet)}

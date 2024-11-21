@@ -36,12 +36,12 @@ TODO:
 
 function App() {
   const [valgtVirksomhet, setValgtVirksomhet] = useState<{
-    orgNr: string;
+    orgnr: string;
     navn: string;
   } | null>(null);
 
   const [valgtVirksomhetFri, setValgtVirksomhetFri] = useState<{
-    orgNr: string;
+    orgnr: string;
     navn: string;
   } | null>(null);
   return (
@@ -89,7 +89,7 @@ function App() {
           />
           <TextField
             label="Org. nr."
-            value={valgtVirksomhetFri?.orgNr}
+            value={valgtVirksomhetFri?.orgnr}
             readOnly
           />
           <TextField label="Navn" value={valgtVirksomhetFri?.navn} readOnly />
@@ -110,41 +110,41 @@ export default App;
 
 const MOCK_ORGANISASJONER = [
   {
-    orgNr: orgnr(),
+    orgnr: orgnr(),
     navn: faker.company.name(),
     altinn3Tilganger: [],
     altinn2Tilganger: [],
     underenheter: [
       {
-        orgNr: orgnr(),
+        orgnr: orgnr(),
         navn: faker.company.name(),
         underenheter: [
           {
-            orgNr: orgnr(),
+            orgnr: orgnr(),
             navn: faker.company.name(),
             underenheter: [
               {
-                orgNr: orgnr(),
+                orgnr: orgnr(),
                 navn: faker.company.name(),
                 underenheter: [
                   {
-                    orgNr: orgnr(),
+                    orgnr: orgnr(),
                     navn: faker.company.name(),
                     underenheter: [],
                   },
                   {
-                    orgNr: orgnr(),
+                    orgnr: orgnr(),
                     navn: faker.company.name(),
                     underenheter: [],
                   },
                 ],
               },
               {
-                orgNr: orgnr(),
+                orgnr: orgnr(),
                 navn: faker.company.name(),
                 underenheter: [
                   {
-                    orgNr: orgnr(),
+                    orgnr: orgnr(),
                     navn: faker.company.name(),
                     underenheter: [],
                   },
@@ -153,7 +153,7 @@ const MOCK_ORGANISASJONER = [
             ],
           },
           {
-            orgNr: orgnr(),
+            orgnr: orgnr(),
             navn: faker.company.name(),
             underenheter: [],
           },
@@ -162,7 +162,7 @@ const MOCK_ORGANISASJONER = [
     ],
   },
   {
-    orgNr: orgnr(),
+    orgnr: orgnr(),
     underenheter: [],
     navn: faker.company.name(),
   },

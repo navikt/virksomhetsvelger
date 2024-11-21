@@ -30,7 +30,7 @@ export const Underenhet = forwardRef<HTMLButtonElement, UnderenhetProps>(
           </BodyShort>
           <BodyShort>
             <span>Org.nr. </span>
-            <span>{formatOrgNr(underenhet.orgNr)}</span>
+            <span>{formatOrgNr(underenhet.orgnr)}</span>
           </BodyShort>
         </div>
         {underenhet.valgt && (
