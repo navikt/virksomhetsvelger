@@ -35,6 +35,8 @@ Flere oppdaterte eksempler på bruk finner du i demo appen under src/App.tsx
 
 TODO: gi noen eksempler her i readme 
 
+Live demo: https://navikt.github.io/virksomhetsvelger/
+
 ## Lokal Utvikling
 
 Denne appen er bygget med vite i library mode: https://vite.dev/guide/build.html#library-mode
