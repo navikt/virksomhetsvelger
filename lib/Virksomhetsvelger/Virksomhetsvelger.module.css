@@ -1,0 +1,193 @@
+.virksomhetsvelger {
+    padding: var(--a-spacing-3) var(--a-spacing-5);
+}
+
+.virksomhetsvelger:active {
+    color: white;
+}
+
+.virksomhetsvelgerInnhold {
+    display: grid;
+    grid-template-columns: minmax(3rem, 25rem) 1rem;
+    align-items: center;
+    gap: 8px;
+}
+
+.virksomhetsvelgerTekst .virksomhetsvelgerVirksomhetsnavn {
+    font-size: 1.25rem;
+    font-weight: var(--a-font-weight-bold);
+}
+
+@media (max-width: 520px) {
+    .virksomhetsvelgerInnhold {
+        grid-template-columns: minmax(3rem, 25rem) 1rem;
+    }
+
+    .virksomhetsvelger {
+        padding: var(--a-spacing-3) var(--a-spacing-1) var(--a-spacing-3) var(--a-spacing-3);
+    }
+}
+
+.virksomhetsvelgerFriKomponent {
+    position: relative;
+    display: flex;
+    max-width: fit-content;
+}
+
+.virksomhetsvelgerFriKomponent {
+    background: var(--a-bg-default);
+}
+
+.virksomhetsvelgerInnhold svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.virksomhetsvelgerTekst {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.virksomhetsvelgerTekst > h2 {
+    white-space: pre;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.virksomhetsvelgerTekst > p {
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.virksomhetsvelgerPopup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: var(--a-spacing-3);
+    background-color: var(--a-bg-subtle);
+    border-radius: var(--a-border-radius-small);
+}
+
+.virksomhetsvelgerPopupHeader {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.virksomhetsvelgerPopupHeaderXbtn {
+    all: unset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3rem;
+    cursor: pointer;
+}
+
+
+.virksomhetsvelgerEnheter {
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+}
+
+.virksomhetsvelgerJuridiskEnhet :global(.navds-accordion__content),
+.virksomhetsvelgerJuridiskEnhet :global(.navds-accordion__header),
+.virksomhetsvelgerJuridiskEnhet :global(.navds-accordion__header:hover),
+.virksomhetsvelgerJuridiskEnhet :global(.navds-accordion__header:active){
+    border: none;
+}
+
+.virksomhetsvelgerJuridiskEnhet :global(.navds-accordion__header) {
+    align-items: center;
+    border-radius: var(--a-border-radius-medium);
+}
+
+.virksomhetsvelgerJuridiskEnhet :global(.navds-accordion__header:focus) {
+    box-shadow: inset var(--a-shadow-focus) !important;
+}
+
+.virksomhetsvelgerJuridiskEnhet :global(.navds-accordion__content) {
+    padding: var(--a-spacing-2);
+}
+
+.virksomhetsvelgerJuridiskEnhet {
+    border-radius: var(--a-border-radius-medium);
+    background-color: white;
+}
+
+.virksomhetsvelgerEnhet {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: var(--a-spacing-4);
+}
+
+.virksomhetsvelgerEnhetJuridisk {
+    grid-template-columns: 1fr auto;
+}
+
+.virksomhetsvelgerEnhetTittel {
+    font-weight: bold;
+}
+
+.virksomhetsvelgerEnhetTekst {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.virksomhetsvelgerEnhetBeskrivelse {
+    margin-top: var(--a-spacing-2);
+}
+
+.virksomhetsvelgerUnderenheter {
+    display: flex;
+    flex-direction: column;
+    gap: var(--a-spacing-1);
+    list-style: none;
+}
+
+.virksomhetsvelgerUnderenheter ul {
+    padding: 0;
+}
+
+.virksomhetsvelgerUnderenhet {
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.virksomhetsvelgerUnderenhetInnhold {
+    width: 100%;
+    padding: var(--a-spacing-3) var(--a-spacing-4);
+}
+
+.virksomhetsvelgerUnderenhetInnhold:focus {
+    /* liten hack da programmatisk focus ikke funker på ds-react lenger. usikker på hvorfor */
+    box-shadow: inset 0 0 0 2px var(--ac-button-tertiary-focus-border, var(--a-border-action)), var(--a-shadow-focus);
+}
+
+.virksomhetsvelgerUnderenhetInnhold > span {
+    width: 100%;
+}
+
+.virksomhetsvelgerUnderenhetValgtIkon {
+    display: flex;
+}
+
+@media (max-width: 520px) {
+    .virksomhetsvelgerUnderenhetInnhold {
+        padding: var(--a-spacing-4) 0;
+    }
+}
+
+/*
+skru av accordion shadows med design tokens
+https://aksel.nav.no/grunnleggende/styling/design-tokens
+*/
+.virksomhetsvelgerPopup :global(.navds-accordion) {
+    --ac-accordion-header-border: none;
+}

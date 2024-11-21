@@ -1,0 +1,64 @@
+{
+  "name": "@navikt/virksomhetsvelger",
+  "private": false,
+  "version": "0.0.1",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/lib/main.d.ts",
+      "default": "./dist/main.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/navikt/virksomhetsvelger"
+  },
+  "scripts": {
+    "dev": "vite",
+    "dev:watch": "run-p build:watch dev",
+    "build": "tsc -b ./tsconfig.lib.json && vite build",
+    "build:watch": "tsc -b ./tsconfig.lib.json && vite build --watch",
+    "build:cicd": "run-s lint test build",
+    "build:demo": "vite build -c vite.config.demo.ts",
+    "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "test": "vitest run"
+  },
+  "peerDependencies": {
+    "@navikt/ds-css": "7.5.1",
+    "@navikt/ds-react": "7.5.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.15.0",
+    "@navikt/aksel-icons": "7.5.1",
+    "@navikt/ds-css": "7.5.1",
+    "@navikt/ds-react": "7.5.1",
+    "@navikt/nav-dekoratoren-moduler": "1.6.9",
+    "@types/node": "22.9.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "eslint": "^9.15.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.14",
+    "glob": "^11.0.0",
+    "globals": "^15.11.0",
+    "npm-run-all": "4.1.5",
+    "prettier": "3.3.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "~5.6.2",
+    "typescript-eslint": "8.15.0",
+    "vite": "^5.4.10",
+    "vite-plugin-dts": "^4.2.1",
+    "vitest": "2.1.5"
+  },
+  "dependencies": {
+    "focus-trap-react": "10.3.1"
+  }
+}

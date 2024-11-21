@@ -1,0 +1,45 @@
+
+.root {
+    background-color: var(--a-bg-default);
+    border-bottom: 1px solid var(--a-gray-300);
+    padding: 1rem;
+}
+
+@media (min-width: 48rem) {
+    .root {
+        padding: 20px 16px;
+    }
+}
+
+
+.innholdHeader {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-width: 30rem;
+    gap: 1.25rem;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr minmax(1rem, 60rem) 1fr;
+}
+
+.innhold {
+    display: flex;
+    flex-wrap: wrap;
+    grid-column-start: 2;
+    justify-content: space-between;
+    column-gap: 48px;
+    row-gap: 16px;
+    align-items: center;
+}
+
+.widgets {
+    position: relative;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: flex-end;
+    max-width: 30rem;
+}

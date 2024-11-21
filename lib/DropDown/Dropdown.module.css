@@ -1,0 +1,32 @@
+.panel {
+  display: flex;
+  z-index: 999;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  top: 5rem;
+  width: 100%;
+  max-width: 30rem;
+  border: solid 2px var(--a-deepblue-700);
+  border-radius: 4px;
+  max-height: 65vh;
+}
+
+.panel > * {
+  flex-grow: 1;
+}
+
+.panelFriKomponent {
+  right: 0;
+}
+
+@media (max-width: 768px), (max-height: 600px) and (orientation: landscape){
+  .panel {
+    max-height: unset;
+    max-width: unset;
+    width: min(100vw, 768px);
+    position: fixed;
+    top: calc(var(--decorator-sticky-offset, 0px) + 0rem);
+    height: calc(100vh - env(safe-area-inset-bottom) - var(--decorator-sticky-offset, 0px));
+  }
+}

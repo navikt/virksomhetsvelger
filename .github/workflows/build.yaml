@@ -1,0 +1,50 @@
+name: test, build, publish
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  cicd:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
+
+      - run: npm ci
+      - run: npm run build:cicd
+
+      - if: github.ref == 'refs/heads/main'
+        name: publish on github
+        run: |
+          if jq --null-input --exit-status \
+              --argjson local "$(jq .version package.json)" \
+              --argjson published "$(npm view --json @navikt/virksomhetsvelger versions)" \
+              '$published | map(. == $local) | any'
+          then
+              echo "Version already published. Nothing to do."
+          else
+              npm publish --access public
+          fi
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: npm run build:demo
+      - uses: actions/configure-pages@v4
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: './demo'
+      - id: deployment
+        if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
+        uses: actions/deploy-pages@v4
+
