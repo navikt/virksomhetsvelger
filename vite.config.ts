@@ -12,7 +12,7 @@ export default defineConfig({
   plugins: [
     react(),
     dts({
-      tsconfigPath: resolve(__dirname, "tsconfig.lib.json"),
+      include: ["lib"],
     }),
   ],
   build: {
