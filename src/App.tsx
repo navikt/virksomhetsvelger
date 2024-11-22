@@ -3,8 +3,8 @@ import styles from "./App.module.css";
 
 // https://nodejs.org/api/packages.html#packages_self_referencing_a_package_using_its_name
 import { Banner, Virksomhetsvelger } from "@navikt/virksomhetsvelger";
+import "@navikt/virksomhetsvelger/dist/assets/style.css";
 
-import "../dist/assets/style.css";
 import "@navikt/ds-css";
 
 import { BellIcon } from "@navikt/aksel-icons";
