@@ -1,9 +1,7 @@
 import { ReactNode, useEffect, useMemo, useState } from "react";
 import { filterRecursive, flatUtHierarki } from "./util";
-import {
-  Organisasjon,
-  VirksomhetsvelgerContext,
-} from "./VirksomhetsvelgerContext";
+import { VirksomhetsvelgerContext } from "./VirksomhetsvelgerContext";
+import { Organisasjon } from "./Virksomhetsvelger";
 
 export const VirksomhetsvelgerProvider = ({
   children,

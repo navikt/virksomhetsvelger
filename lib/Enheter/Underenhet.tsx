@@ -4,7 +4,7 @@ import styles from "./Underenhet.module.css";
 import { formatOrgNr } from "../Virksomhetsvelger/util";
 import { CheckmarkCircleIcon } from "@navikt/aksel-icons";
 import { OrganisasjonMedState } from "../Virksomhetsvelger/useTastaturNavigasjon";
-import { Organisasjon } from "../Virksomhetsvelger/VirksomhetsvelgerContext";
+import { Organisasjon } from "../Virksomhetsvelger/Virksomhetsvelger";
 
 type UnderenhetProps = {
   onClick: (underenhet: Organisasjon) => void;

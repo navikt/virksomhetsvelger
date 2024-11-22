@@ -1,10 +1,5 @@
 import { createContext } from "react";
-
-export interface Organisasjon {
-  orgnr: string;
-  navn: string;
-  underenheter: Organisasjon[];
-}
+import { Organisasjon } from "./Virksomhetsvelger";
 
 export const VirksomhetsvelgerContext = createContext<{
   aktivtOrganisasjonstre: Organisasjon[];

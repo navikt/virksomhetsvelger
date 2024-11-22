@@ -6,10 +6,8 @@ import {
   useCallback,
 } from "react";
 import { findLastRecursive, findRecursive, mapRecursive } from "./util";
-import {
-  Organisasjon,
-  VirksomhetsvelgerContext,
-} from "./VirksomhetsvelgerContext";
+import { VirksomhetsvelgerContext } from "./VirksomhetsvelgerContext";
+import { Organisasjon } from "./Virksomhetsvelger";
 
 export interface OrganisasjonMedState extends Organisasjon {
   index: number;

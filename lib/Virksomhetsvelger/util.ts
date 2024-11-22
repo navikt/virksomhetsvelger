@@ -1,5 +1,5 @@
 import { OrganisasjonMedState } from "./useTastaturNavigasjon";
-import { Organisasjon } from "./VirksomhetsvelgerContext";
+import { Organisasjon } from "./Virksomhetsvelger";
 
 export const formatOrgNr = (orgNr: string) => orgNr.match(/.{1,3}/g)?.join(" ");
 

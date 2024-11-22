@@ -8,11 +8,8 @@ import { formatOrgNr } from "./util";
 
 import styles from "./Virksomhetsvelger.module.css";
 import { EnhetMedUnderenheter } from "../Enheter/EnheterMedUnderenheter";
-import {
-  Organisasjon,
-  VirksomhetsvelgerContext,
-} from "./VirksomhetsvelgerContext.ts";
-import { VirksomhetsvelgerProvider } from "./VirksomhetsvelgerProvider.tsx";
+import { VirksomhetsvelgerContext } from "./VirksomhetsvelgerContext";
+import { VirksomhetsvelgerProvider } from "./VirksomhetsvelgerProvider";
 
 const Velger = ({ friKomponent }: { friKomponent?: boolean }) => {
   const dropdownId = "VirksomhetsvelgerPopup";
@@ -178,6 +175,12 @@ const Velger = ({ friKomponent }: { friKomponent?: boolean }) => {
 export interface ValgtVirksomhet {
   orgnr: string;
   navn: string;
+}
+
+export interface Organisasjon {
+  orgnr: string;
+  navn: string;
+  underenheter: Organisasjon[];
 }
 
 export const Virksomhetsvelger = ({
