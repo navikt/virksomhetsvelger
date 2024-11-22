@@ -33,8 +33,6 @@ import '@navikt/ds-css';
 
 Oppdaterte eksempler på bruk finner du i demo appen under [src/App.tsx](src/App.tsx).
 
-```jsx
-
 Live demo: https://navikt.github.io/virksomhetsvelger/
 
 ## Lokal Utvikling
