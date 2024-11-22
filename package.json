@@ -1,7 +1,7 @@
 {
   "name": "@navikt/virksomhetsvelger",
   "private": false,
-  "version": "0.0.5",
+  "version": "0.0.6",
   "type": "module",
   "exports": {
     ".": {
@@ -28,7 +28,6 @@
     "test": "vitest run"
   },
   "peerDependencies": {
-    "@navikt/aksel-icons": ">=6",
     "@navikt/ds-css": ">=6",
     "@navikt/ds-react": ">=6",
     "react": "17 || 18",
