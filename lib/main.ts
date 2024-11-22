@@ -1,2 +1,2 @@
-export { Banner } from "./Banner/Banner.tsx";
-export { Virksomhetsvelger } from "./Virksomhetsvelger/Virksomhetsvelger.tsx";
+export { Banner } from "./Banner/Banner";
+export { Virksomhetsvelger } from "./Virksomhetsvelger/Virksomhetsvelger";

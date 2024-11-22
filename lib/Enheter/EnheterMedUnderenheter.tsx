@@ -1,9 +1,9 @@
-import { OrganisasjonMedState } from "../Virksomhetsvelger/useTastaturNavigasjon.ts";
+import { OrganisasjonMedState } from "../Virksomhetsvelger/useTastaturNavigasjon";
 import { ForwardedRef } from "react";
 import styles from "./EnheterMedUnderenheter.module.css";
 import { Accordion } from "@navikt/ds-react";
-import { Hovedenhet } from "./Hovedenhet.tsx";
-import { Underenhet } from "./Underenhet.tsx";
+import { Hovedenhet } from "./Hovedenhet";
+import { Underenhet } from "./Underenhet";
 
 export const EnhetMedUnderenheter = ({
   organisasjon,

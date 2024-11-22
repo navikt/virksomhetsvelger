@@ -5,11 +5,11 @@ import {
   KeyboardEvent,
   useCallback,
 } from "react";
-import { findLastRecursive, findRecursive, mapRecursive } from "./util.ts";
+import { findLastRecursive, findRecursive, mapRecursive } from "./util";
 import {
   Organisasjon,
   VirksomhetsvelgerContext,
-} from "./VirksomhetsvelgerContext.ts";
+} from "./VirksomhetsvelgerContext";
 
 export interface OrganisasjonMedState extends Organisasjon {
   index: number;

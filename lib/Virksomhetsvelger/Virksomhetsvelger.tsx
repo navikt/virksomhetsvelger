@@ -4,10 +4,10 @@ import { ChevronDownIcon, ChevronUpIcon, XMarkIcon } from "@navikt/aksel-icons";
 import FocusTrap from "focus-trap-react";
 import Dropdown from "../DropDown/Dropdown";
 import { useTastaturNavigasjon } from "./useTastaturNavigasjon";
-import { formatOrgNr } from "./util.ts";
+import { formatOrgNr } from "./util";
 
 import styles from "./Virksomhetsvelger.module.css";
-import { EnhetMedUnderenheter } from "../Enheter/EnheterMedUnderenheter.tsx";
+import { EnhetMedUnderenheter } from "../Enheter/EnheterMedUnderenheter";
 import {
   Organisasjon,
   VirksomhetsvelgerContext,

@@ -1,10 +1,10 @@
 import React, { forwardRef } from "react";
 import { BodyShort, Button } from "@navikt/ds-react";
 import styles from "./Underenhet.module.css";
-import { formatOrgNr } from "../Virksomhetsvelger/util.ts";
+import { formatOrgNr } from "../Virksomhetsvelger/util";
 import { CheckmarkCircleIcon } from "@navikt/aksel-icons";
-import { OrganisasjonMedState } from "../Virksomhetsvelger/useTastaturNavigasjon.ts";
-import { Organisasjon } from "../Virksomhetsvelger/VirksomhetsvelgerContext.ts";
+import { OrganisasjonMedState } from "../Virksomhetsvelger/useTastaturNavigasjon";
+import { Organisasjon } from "../Virksomhetsvelger/VirksomhetsvelgerContext";
 
 type UnderenhetProps = {
   onClick: (underenhet: Organisasjon) => void;

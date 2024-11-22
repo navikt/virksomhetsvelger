@@ -1,7 +1,7 @@
 import styles from "./Hovedenhet.module.css";
 import { BodyShort } from "@navikt/ds-react";
-import { formatOrgNr } from "../Virksomhetsvelger/util.ts";
-import { OrganisasjonMedState } from "../Virksomhetsvelger/useTastaturNavigasjon.ts";
+import { formatOrgNr } from "../Virksomhetsvelger/util";
+import { OrganisasjonMedState } from "../Virksomhetsvelger/useTastaturNavigasjon";
 
 export const Hovedenhet = ({
   hovedenhet,
