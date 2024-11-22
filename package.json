@@ -1,14 +1,10 @@
 {
   "name": "@navikt/virksomhetsvelger",
   "private": false,
-  "version": "0.0.10",
+  "version": "0.0.11",
   "type": "module",
-  "exports": {
-    ".": {
-      "types": "./dist/main.d.ts",
-      "default": "./dist/main.js"
-    }
-  },
+  "main": "./dist/main.js",
+  "types": "./dist/main.d.ts",
   "files": [
     "dist"
   ],
