@@ -1,7 +1,7 @@
 {
   "name": "@navikt/virksomhetsvelger",
   "private": false,
-  "version": "0.0.14",
+  "version": "0.0.15",
   "type": "module",
   "main": "./dist/main.js",
   "types": "./dist/main.d.ts",
@@ -9,6 +9,10 @@
     ".": {
       "types": "./dist/main.d.ts",
       "default": "./dist/main.js"
+    },
+    "./dist/*.css": {
+      "import": "./dist/*.css",
+      "require": "./dist/*.css"
     }
   },
   "files": [
