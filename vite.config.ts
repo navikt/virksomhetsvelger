@@ -11,9 +11,7 @@ import { glob } from "glob";
 export default defineConfig({
   plugins: [
     react(),
-    dts({
-      tsconfigPath: resolve(__dirname, "tsconfig.lib.json"),
-    }),
+    dts({ tsconfigPath: "./tsconfig.lib.json", rollupTypes: true }),
   ],
   build: {
     sourcemap: true,

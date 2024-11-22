@@ -9,7 +9,7 @@ Rammeverk med SSR skal også fungere. Ta kontakt dersom det er problemer med opp
 
 ## Bruk
 
-### Installer komponenten
+### Innstaller komponenten
 
 ```sh
 npm install @navikt/virksomhetsvelger
@@ -31,9 +31,7 @@ import '@navikt/ds-css';
 
 ### Hvordan bruke
 
-Flere oppdaterte eksempler på bruk finner du i demo appen under src/App.tsx
-
-TODO: gi noen eksempler her i readme 
+Oppdaterte eksempler på bruk finner du i demo appen under src/App.tsx
 
 Live demo: https://navikt.github.io/virksomhetsvelger/
 
@@ -49,6 +47,22 @@ For å kjøre en terminal med vite i watch mode og bygge komponenten ved endring
 npm run dev:watch
 ```
 
+Koden er satt opp med ESLint, TSESLint og prettier. 
+Anbefales at man skrur på dette i sin IDE.
+
+Manuell linting og testing kjøres lokalt med:
+```sh
+npm run lint
+npm run test 
+```
+
+## CI/CD
+
+Ved push på main bygges komponenten og deployes til npm hvis versjon i package.json er endret.
+
+```
+npm run build:cicd
+```
 
 ## Publisering på NPM
 
