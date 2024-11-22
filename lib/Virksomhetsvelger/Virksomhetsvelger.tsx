@@ -172,11 +172,6 @@ const Velger = ({ friKomponent }: { friKomponent?: boolean }) => {
   );
 };
 
-export interface ValgtVirksomhet {
-  orgnr: string;
-  navn: string;
-}
-
 export interface Organisasjon {
   orgnr: string;
   navn: string;
@@ -189,7 +184,7 @@ export const Virksomhetsvelger = ({
   friKomponent,
 }: {
   organisasjoner: Organisasjon[];
-  onChange: (organisasjon: ValgtVirksomhet) => void;
+  onChange: (organisasjon: Organisasjon) => void;
   friKomponent?: boolean;
 }) => {
   return (

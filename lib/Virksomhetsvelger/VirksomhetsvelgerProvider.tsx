@@ -9,9 +9,7 @@ export const VirksomhetsvelgerProvider = ({
   onOrganisasjonChange,
 }: {
   organisasjonstre: Organisasjon[];
-  onOrganisasjonChange: (
-    organisasjon: Pick<Organisasjon, "orgnr" | "navn">,
-  ) => void;
+  onOrganisasjonChange: (organisasjon: Organisasjon) => void;
   children: ReactNode;
 }) => {
   /**
@@ -42,11 +40,7 @@ export const VirksomhetsvelgerProvider = ({
 
   useEffect(() => {
     if (valgtOrganisasjon?.orgnr) {
-      const { orgnr, navn } = valgtOrganisasjon;
-      onOrganisasjonChange({
-        orgnr,
-        navn,
-      });
+      onOrganisasjonChange(valgtOrganisasjon);
     }
   }, [onOrganisasjonChange, valgtOrganisasjon, valgtOrganisasjon?.orgnr]);
 
