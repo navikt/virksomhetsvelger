@@ -19,7 +19,7 @@ const Dropdown = ({
     <div
       role="dialog"
       aria-label={ariaLabel}
-      className={`${styles.panel} ${!friKomponent ? styles.panelFriKomponent : ""}`}
+      className={`${styles.panel} ${friKomponent ? styles.panelFriKomponent : ""}`}
       {...divProperties}
     >
       {children}
