@@ -24,7 +24,7 @@ se peer dependencies i package.json
 
 ```js
 import { Virksomhetsvelger } from '@navikt/virksomhetsvelger';
-import '@navikt/virksomhetsvelger/lib/virksomhetsvelger.css';
+import '@navikt/virksomhetsvelger/dist/assets/style.css';
 
 import '@navikt/ds-css';
 ```
