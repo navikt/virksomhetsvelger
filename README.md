@@ -64,16 +64,20 @@ Ved push på main bygges komponenten og deployes til npm hvis versjon i package.
 npm run build:cicd
 ```
 
-## Publisering på NPM
+## Publisering av ny versjon
 
 
-Oppgrader versjonsnummer i package.json ved å kjøre `npm version patch/minor/major` (F.eks
+Oppgrader versjonsnummer i package.json enten manuellt eller ved å kjøre `npm version patch/minor/major` (F.eks
 "npm version major" hvis det er breaking changes). Hvis du er i tvil om du skal oppgradere med patch, minor eller
 major, kan lese om sematic versioning på https://semver.org/. Ved å kjøre en av de tre kommandoene opprettes det en ny
 commit med det nye versjonsnummeret som commit message.
 Det opprettes samtidig en ny tag med det nye versjonsnummeret.
 
-Commits til main med ny versjon i `package.json` vil publiseres til NPM.
+Commits til main med ny versjon i `package.json` vil publiseres til github.
+
+Det er foreløpig ikke satt opp publisering til npmjs, dersom det er ønskelig ta kontakt med teamet.
+
+```sh
 
 ## Kontakt oss
 
