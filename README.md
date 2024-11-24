@@ -77,8 +77,6 @@ Commits til main med ny versjon i `package.json` vil publiseres til github.
 
 Det er foreløpig ikke satt opp publisering til npmjs, dersom det er ønskelig ta kontakt med teamet.
 
-```sh
-
 ## Kontakt oss
 
 Opprett issue i repository hvis du lurer på noe.
