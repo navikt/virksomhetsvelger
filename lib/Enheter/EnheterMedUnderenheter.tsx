@@ -11,21 +11,24 @@ export const EnhetMedUnderenheter = ({
   onHovedenhetClick,
   onFocus,
   enhetRef,
-  valgtEnhetErIListe,
+  tvingTabbable,
 }: {
   organisasjon: OrganisasjonMedState;
   onUnderenhetValgt: (organisasjon: OrganisasjonMedState) => void;
   onHovedenhetClick: (organisasjon: OrganisasjonMedState) => void;
   onFocus: (enhet: OrganisasjonMedState) => void;
   enhetRef: ForwardedRef<HTMLButtonElement>;
-  valgtEnhetErIListe: boolean;
+  tvingTabbable: boolean;
 }) => {
+  const underenhetErValgt = organisasjon.underenheter.some(
+    ({ valgt }) => valgt,
+  );
   return (
     <>
       <div className={styles.enhet} role="group">
         <Accordion.Item open={organisasjon.ekspandert}>
           <Accordion.Header
-            tabIndex={!valgtEnhetErIListe ? 0 : -1}
+            tabIndex={tvingTabbable || underenhetErValgt ? 0 : -1}
             ref={organisasjon.fokusert ? enhetRef : null}
             onClick={() => {
               onHovedenhetClick(organisasjon);

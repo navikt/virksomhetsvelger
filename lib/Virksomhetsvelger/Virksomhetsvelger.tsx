@@ -34,6 +34,11 @@ const Velger = ({ friKomponent }: { friKomponent?: boolean }) => {
     (acc, org) => acc + org.underenheter.length,
     0,
   );
+  const valgtEnhetErIListe = organisasjonerMedState.some(
+    (o) =>
+      o.orgnr === valgtOrganisasjon.orgnr ||
+      o.underenheter.some((u) => u.orgnr === valgtOrganisasjon.orgnr),
+  );
   const OpenCloseIcon = åpen ? ChevronUpIcon : ChevronDownIcon;
 
   useEffect(() => {
@@ -140,28 +145,24 @@ const Velger = ({ friKomponent }: { friKomponent?: boolean }) => {
               </Detail>
               <Accordion style={{ display: "flex", overflow: "auto" }}>
                 <div className={styles.enheter} onKeyDown={handleKeyDown}>
-                  {organisasjonerMedState.map((org) => (
-                    <EnhetMedUnderenheter
-                      valgtEnhetErIListe={organisasjonerMedState.some(
-                        (o) =>
-                          o.orgnr === valgtOrganisasjon.orgnr ||
-                          o.underenheter.some(
-                            (u) => u.orgnr === valgtOrganisasjon.orgnr,
-                          ),
-                      )}
-                      key={org.orgnr}
-                      enhetRef={valgtEnhetRef}
-                      organisasjon={org}
-                      onUnderenhetValgt={(org) => {
-                        setÅpen(false);
-                        velgUnderenhet(org);
-                      }}
-                      onHovedenhetClick={toggleEkspander}
-                      onFocus={(org) => {
-                        fokuserEnhet(org);
-                      }}
-                    />
-                  ))}
+                  {organisasjonerMedState.map((org, i) => {
+                    return (
+                      <EnhetMedUnderenheter
+                        tvingTabbable={!valgtEnhetErIListe && i === 0}
+                        key={org.orgnr}
+                        enhetRef={valgtEnhetRef}
+                        organisasjon={org}
+                        onUnderenhetValgt={(org) => {
+                          setÅpen(false);
+                          velgUnderenhet(org);
+                        }}
+                        onHovedenhetClick={toggleEkspander}
+                        onFocus={(org) => {
+                          fokuserEnhet(org);
+                        }}
+                      />
+                    );
+                  })}
                 </div>
               </Accordion>
             </div>
