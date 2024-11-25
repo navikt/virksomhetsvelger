@@ -25,7 +25,7 @@ export const EnhetMedUnderenheter = ({
   );
   return (
     <>
-      <div className={styles.enhet} role="group">
+      <div className={styles.enhet}>
         <Accordion.Item open={organisasjon.ekspandert}>
           <Accordion.Header
             tabIndex={tvingTabbable || underenhetErValgt ? 0 : -1}
