@@ -21,10 +21,7 @@ export const Hovedenhet = ({
           <span>Org.nr. </span>
           <span>{formatOrgNr(hovedenhet.orgnr)}</span>
         </BodyShort>
-        <BodyShort
-          className={styles.hovedenhetBeskrivelse}
-          aria-label={`Hovedenheten har ${antallUnderenheter} ${antallUnderenheter === 1 ? "underenhet" : "underenheter"}`}
-        >
+        <BodyShort className={styles.hovedenhetBeskrivelse}>
           {antallUnderenheter}{" "}
           {antallUnderenheter === 1 ? "underenhet" : "underenheter"}
           {valgt ? " - 1 valgt" : ""}
