@@ -103,6 +103,9 @@ const split = <T extends Organisasjon>(
   return [children, otherParents];
 };
 
+/**
+ * Funksjon som returnerer løvnoder og første ledd parent som flat liste
+ */
 export const flatUtHierarki = (
   organisasjonstre: Organisasjon[],
 ): Organisasjon[] => {
