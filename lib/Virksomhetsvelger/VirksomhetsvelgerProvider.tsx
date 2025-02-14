@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, useMemo, useState } from "react";
-import { filterRecursive, flatUtHierarki } from "./util";
+import { filterRecursive, findRecursive, flatUtHierarki } from "./util";
 import { VirksomhetsvelgerContext } from "./VirksomhetsvelgerContext";
 import { Organisasjon } from "./Virksomhetsvelger";
 
@@ -7,8 +7,10 @@ export const VirksomhetsvelgerProvider = ({
   children,
   organisasjonstre: orgtre,
   onOrganisasjonChange,
+  initValgtOrgnr,
 }: {
   organisasjonstre: Organisasjon[];
+  initValgtOrgnr: string | undefined;
   onOrganisasjonChange: (organisasjon: Organisasjon) => void;
   children: ReactNode;
 }) => {
@@ -20,8 +22,20 @@ export const VirksomhetsvelgerProvider = ({
   const [søketekst, setSøketekst] = useState("");
   const [aktivtOrganisasjonstre, setAktivtOrganisasjonstre] =
     useState(organisasjonstre);
+
   const [valgtOrganisasjon, setValgtOrganisasjon] = useState<Organisasjon>(
-    () => aktivtOrganisasjonstre[0].underenheter[0],
+    () => {
+      if (initValgtOrgnr !== undefined) {
+        return (
+          findRecursive(
+            organisasjonstre,
+            (org) => org.orgnr === initValgtOrgnr,
+          ) ?? aktivtOrganisasjonstre[0].underenheter[0]
+        );
+      }
+
+      return aktivtOrganisasjonstre[0].underenheter[0];
+    },
   );
 
   useEffect(() => {

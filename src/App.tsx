@@ -87,12 +87,20 @@ function App() {
             onChange={setValgtVirksomhetFri}
             friKomponent={true}
           />
-          <TextField
-            label="Org. nr."
-            value={valgtVirksomhetFri?.orgnr}
-            readOnly
-          />
-          <TextField label="Navn" value={valgtVirksomhetFri?.navn} readOnly />
+          {valgtVirksomhetFri !== null && (
+            <>
+              <TextField
+                label="Org. nr."
+                value={valgtVirksomhetFri.orgnr}
+                readOnly
+              />
+              <TextField
+                label="Navn"
+                value={valgtVirksomhetFri.navn}
+                readOnly
+              />
+            </>
+          )}
         </VStack>
       </Box>
 

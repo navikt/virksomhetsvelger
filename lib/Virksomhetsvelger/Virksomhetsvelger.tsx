@@ -181,16 +181,19 @@ export interface Organisasjon {
 export const Virksomhetsvelger = ({
   organisasjoner,
   onChange,
+  initValgtOrgnr,
   friKomponent,
 }: {
   organisasjoner: Organisasjon[];
   onChange: (organisasjon: Organisasjon) => void;
+  initValgtOrgnr?: string;
   friKomponent?: boolean;
 }) => {
   return (
     <VirksomhetsvelgerProvider
       organisasjonstre={organisasjoner}
       onOrganisasjonChange={onChange}
+      initValgtOrgnr={initValgtOrgnr}
     >
       <Velger friKomponent={friKomponent} />
     </VirksomhetsvelgerProvider>
