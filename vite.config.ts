@@ -24,7 +24,12 @@ export default defineConfig({
     rollupOptions: {
       external: ["react", "react/jsx-runtime", "@navikt/ds-react"],
       output: {
-        assetFileNames: "assets/[name][extname]",
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.names && assetInfo.names.some(name => name.endsWith(".css"))) {
+            return "assets/style.css";
+          }
+          return "assets/[name].[ext]";
+        },
         entryFileNames: "[name].js",
       },
     },
