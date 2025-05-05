@@ -23,6 +23,9 @@ jobs:
           cache: 'npm'
 
       - run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - run: npm run build:cicd
 
       - if: github.ref == 'refs/heads/main'
