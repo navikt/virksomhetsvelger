@@ -20,8 +20,17 @@ export const VirksomhetsvelgerProvider = ({
   const organisasjonstre = useMemo(() => flatUtHierarki(orgtre), [orgtre]);
 
   const [søketekst, setSøketekst] = useState("");
-  const [aktivtOrganisasjonstre, setAktivtOrganisasjonstre] =
-    useState(organisasjonstre);
+  const aktivtOrganisasjonstre = useMemo(() => {
+    if (søketekst === "") {
+      return organisasjonstre;
+    }
+    return filterRecursive(
+      organisasjonstre,
+      (o) =>
+        o.orgnr.includes(søketekst) ||
+        o.navn.toLowerCase().includes(søketekst.toLowerCase()),
+    );
+  }, [organisasjonstre, søketekst]);
 
   const [valgtOrganisasjon, setValgtOrganisasjon] = useState<Organisasjon>(
     () => {
@@ -37,20 +46,6 @@ export const VirksomhetsvelgerProvider = ({
       return aktivtOrganisasjonstre[0].underenheter[0];
     },
   );
-
-  useEffect(() => {
-    if (søketekst === "") {
-      setAktivtOrganisasjonstre(organisasjonstre);
-      return;
-    }
-    const matches = filterRecursive(
-      organisasjonstre,
-      (o) =>
-        o.orgnr.includes(søketekst) ||
-        o.navn.toLowerCase().includes(søketekst.toLowerCase()),
-    );
-    setAktivtOrganisasjonstre(matches);
-  }, [organisasjonstre, søketekst, setAktivtOrganisasjonstre]);
 
   useEffect(() => {
     if (valgtOrganisasjon?.orgnr) {
