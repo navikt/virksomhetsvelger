@@ -12,7 +12,7 @@ Rammeverk med SSR skal også fungere. Ta kontakt dersom det er problemer med opp
 ### Innstaller komponenten
 
 ```sh
-npm install @navikt/virksomhetsvelger
+pnpm add @navikt/virksomhetsvelger
 ```
 
 ### Avhengigheter
@@ -44,7 +44,7 @@ Derfor er bygg av komponenten nødvendig for å se endringer i demo appen.
 
 For å kjøre en terminal med vite i watch mode og bygge komponenten ved endringer i koden kjør:
 ```sh
-npm run dev:watch
+pnpm run dev:watch
 ```
 
 Koden er satt opp med ESLint, TSESLint og prettier. 
@@ -52,8 +52,8 @@ Anbefales at man skrur på dette i sin IDE.
 
 Manuell linting og testing kjøres lokalt med:
 ```sh
-npm run lint
-npm run test 
+pnpm run lint
+pnpm run test
 ```
 
 ## CI/CD
@@ -61,14 +61,14 @@ npm run test
 Ved push på main bygges komponenten og deployes til npm hvis versjon i package.json er endret.
 
 ```
-npm run build:cicd
+pnpm run build:cicd
 ```
 
 ## Publisering av ny versjon
 
 
-Oppgrader versjonsnummer i package.json enten manuellt eller ved å kjøre `npm version patch/minor/major` (F.eks
-"npm version major" hvis det er breaking changes). Hvis du er i tvil om du skal oppgradere med patch, minor eller
+Oppgrader versjonsnummer i package.json enten manuelt eller ved å kjøre `pnpm version patch/minor/major` (F.eks
+"pnpm version major" hvis det er breaking changes). Hvis du er i tvil om du skal oppgradere med patch, minor eller
 major, kan lese om sematic versioning på https://semver.org/. Ved å kjøre en av de tre kommandoene opprettes det en ny
 commit med det nye versjonsnummeret som commit message.
 Det opprettes samtidig en ny tag med det nye versjonsnummeret.
@@ -82,4 +82,3 @@ Det er foreløpig ikke satt opp publisering til npmjs, dersom det er ønskelig t
 Opprett issue i repository hvis du lurer på noe.
 
 De med tilgang til NAVs interne slack anbefales å bruker `#bedriftsmeny` eller `#team-fager`.
-
