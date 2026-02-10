@@ -1,5 +1,5 @@
 import { OrganisasjonMedState } from "../Virksomhetsvelger/useTastaturNavigasjon";
-import { ForwardedRef, useEffect, useState } from "react";
+import { ForwardedRef } from "react";
 import styles from "./EnheterMedUnderenheter.module.css";
 import { Accordion } from "@navikt/ds-react";
 import { Hovedenhet } from "./Hovedenhet";
@@ -25,19 +25,6 @@ export const EnhetMedUnderenheter = ({
   );
   const headerId = `hovedenhet-${organisasjon.orgnr}`;
   const contentId = `underenheter-${organisasjon.orgnr}`;
-  const [overflowVisible, setOverflowVisible] = useState(false);
-
-  useEffect(() => {
-    if (organisasjon.ekspandert) {
-      setOverflowVisible(false);
-      const timeoutId = window.setTimeout(() => {
-        setOverflowVisible(true);
-      }, 250);
-      return () => window.clearTimeout(timeoutId);
-    }
-    setOverflowVisible(false);
-    return undefined;
-  }, [organisasjon.ekspandert]);
   return (
     <>
       <div className={styles.enhet} role="group">
@@ -72,7 +59,6 @@ export const EnhetMedUnderenheter = ({
             aria-labelledby={headerId}
             aria-hidden={!organisasjon.ekspandert}
             data-expanded={organisasjon.ekspandert}
-            data-overflow={overflowVisible ? "visible" : "hidden"}
             className={styles.underenheterWrapper}
           >
             <div className={styles.underenheter}>

@@ -41,10 +41,13 @@
     max-height: 1000px;
     opacity: 1;
     pointer-events: auto;
+    animation: overflow-visible 1ms linear 250ms forwards;
 }
 
-.underenheterWrapper[data-overflow="visible"] {
-    overflow: visible;
+@keyframes overflow-visible {
+    to {
+        overflow: visible;
+    }
 }
 
 .underenheter {
