@@ -127,7 +127,7 @@ const Velger = ({ friKomponent }: { friKomponent?: boolean }) => {
                 <Button
                   variant="tertiary"
                   aria-label="lukk virksomhetsvelger"
-                  className={styles.popupHeaderXbtn}
+                  size="small"
                   onClick={() => setÅpen(false)}
                 >
                   <XMarkIcon aria-hidden={true} />
@@ -142,7 +142,7 @@ const Velger = ({ friKomponent }: { friKomponent?: boolean }) => {
                   </>
                 )}
               </Detail>
-              <Accordion style={{ display: "flex", overflow: "auto" }}>
+              <Accordion style={{ display: "flex" }}>
                 <div className={styles.enheter} onKeyDown={handleKeyDown}>
                   {organisasjonerMedState.map((org, i) => {
                     return (

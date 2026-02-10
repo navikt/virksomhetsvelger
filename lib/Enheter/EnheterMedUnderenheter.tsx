@@ -1,5 +1,5 @@
 import { OrganisasjonMedState } from "../Virksomhetsvelger/useTastaturNavigasjon";
-import { ForwardedRef } from "react";
+import { ForwardedRef, useEffect, useState } from "react";
 import styles from "./EnheterMedUnderenheter.module.css";
 import { Accordion } from "@navikt/ds-react";
 import { Hovedenhet } from "./Hovedenhet";
@@ -23,6 +23,21 @@ export const EnhetMedUnderenheter = ({
   const underenhetErValgt = organisasjon.underenheter.some(
     ({ valgt }) => valgt,
   );
+  const headerId = `hovedenhet-${organisasjon.orgnr}`;
+  const contentId = `underenheter-${organisasjon.orgnr}`;
+  const [overflowVisible, setOverflowVisible] = useState(false);
+
+  useEffect(() => {
+    if (organisasjon.ekspandert) {
+      setOverflowVisible(false);
+      const timeoutId = window.setTimeout(() => {
+        setOverflowVisible(true);
+      }, 250);
+      return () => window.clearTimeout(timeoutId);
+    }
+    setOverflowVisible(false);
+    return undefined;
+  }, [organisasjon.ekspandert]);
   return (
     <>
       <div className={styles.enhet} role="group">
@@ -30,6 +45,8 @@ export const EnhetMedUnderenheter = ({
           <Accordion.Header
             tabIndex={tvingTabbable || underenhetErValgt ? 0 : -1}
             ref={organisasjon.fokusert ? enhetRef : null}
+            id={headerId}
+            aria-controls={contentId}
             onClick={() => {
               onHovedenhetClick(organisasjon);
             }}
@@ -49,7 +66,15 @@ export const EnhetMedUnderenheter = ({
               antallUnderenheter={organisasjon.underenheter.length}
             />
           </Accordion.Header>
-          <Accordion.Content>
+          <div
+            id={contentId}
+            role="region"
+            aria-labelledby={headerId}
+            aria-hidden={!organisasjon.ekspandert}
+            data-expanded={organisasjon.ekspandert}
+            data-overflow={overflowVisible ? "visible" : "hidden"}
+            className={styles.underenheterWrapper}
+          >
             <div className={styles.underenheter}>
               {organisasjon.underenheter.map((underenhet) => (
                 <Underenhet
@@ -62,10 +87,11 @@ export const EnhetMedUnderenheter = ({
                       onFocus(underenhet);
                     }
                   }}
+                  tabbable={organisasjon.ekspandert}
                 />
               ))}
             </div>
-          </Accordion.Content>
+          </div>
         </Accordion.Item>
       </div>
     </>

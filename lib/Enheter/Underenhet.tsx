@@ -10,13 +10,14 @@ type UnderenhetProps = {
   onClick: (underenhet: Organisasjon) => void;
   onFocus: (e: React.FocusEvent<HTMLButtonElement>) => void;
   underenhet: OrganisasjonMedState;
+  tabbable?: boolean;
 };
 export const Underenhet = forwardRef<HTMLButtonElement, UnderenhetProps>(
-  ({ onClick, underenhet, onFocus }, ref) => (
+  ({ onClick, underenhet, onFocus, tabbable = true }, ref) => (
     <Button
       type="button"
       ref={ref}
-      tabIndex={underenhet.valgt ? 0 : -1}
+      tabIndex={tabbable ? (underenhet.valgt ? 0 : -1) : -1}
       aria-pressed={underenhet.valgt}
       variant="tertiary"
       onClick={() => onClick(underenhet)}
