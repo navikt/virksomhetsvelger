@@ -74,14 +74,6 @@
     gap: 0.5rem;
 }
 
-.popupHeaderXbtn {
-    all: unset;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 3rem;
-    cursor: pointer;
-}
 
 
 .enheter {

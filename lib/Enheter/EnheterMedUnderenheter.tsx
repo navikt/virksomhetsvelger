@@ -23,6 +23,8 @@ export const EnhetMedUnderenheter = ({
   const underenhetErValgt = organisasjon.underenheter.some(
     ({ valgt }) => valgt,
   );
+  const headerId = `hovedenhet-${organisasjon.orgnr}`;
+  const contentId = `underenheter-${organisasjon.orgnr}`;
   return (
     <>
       <div className={styles.enhet} role="group">
@@ -30,6 +32,8 @@ export const EnhetMedUnderenheter = ({
           <Accordion.Header
             tabIndex={tvingTabbable || underenhetErValgt ? 0 : -1}
             ref={organisasjon.fokusert ? enhetRef : null}
+            id={headerId}
+            aria-controls={contentId}
             onClick={() => {
               onHovedenhetClick(organisasjon);
             }}
@@ -49,7 +53,14 @@ export const EnhetMedUnderenheter = ({
               antallUnderenheter={organisasjon.underenheter.length}
             />
           </Accordion.Header>
-          <Accordion.Content>
+          <div
+            id={contentId}
+            role="region"
+            aria-labelledby={headerId}
+            aria-hidden={!organisasjon.ekspandert}
+            data-expanded={organisasjon.ekspandert}
+            className={styles.underenheterWrapper}
+          >
             <div className={styles.underenheter}>
               {organisasjon.underenheter.map((underenhet) => (
                 <Underenhet
@@ -62,10 +73,11 @@ export const EnhetMedUnderenheter = ({
                       onFocus(underenhet);
                     }
                   }}
+                  tabbable={organisasjon.ekspandert}
                 />
               ))}
             </div>
-          </Accordion.Content>
+          </div>
         </Accordion.Item>
       </div>
     </>
