@@ -10,6 +10,7 @@
   border: solid 2px var(--a-deepblue-700);
   border-radius: 4px;
   max-height: 65vh;
+  overflow-y: auto;
 }
 
 .panel > * {
