@@ -9,6 +9,7 @@
   max-width: 30rem;
   border: solid 2px var(--a-deepblue-700);
   border-radius: 4px;
+  background-color: var(--a-bg-subtle);
   max-height: 65vh;
   overflow-y: auto;
 }
