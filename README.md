@@ -3,6 +3,8 @@
 Virksomhetsvelger og -meny for innlogget arbeidsgiver.
 Tidligere kalt [Bedriftsmeny](https://github.com/navikt/bedriftsmeny).
 
+Responsen fra [arbeidsgiver-altinn-tilganger](https://github.com/navikt/arbeidsgiver-altinn-tilganger) kan sendes rett inn i virksomhetsvelgeren, uten transformering.
+
 Koden er skrevet i TypeScript og React og bygget vitejs som et bibliotek.  
 Komponenten har ingen side effekter og skal kunne brukes uavhengig av rammeverk. 
 Rammeverk med SSR skal også fungere. Ta kontakt dersom det er problemer med oppsett.
