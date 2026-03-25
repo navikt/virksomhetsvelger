@@ -104,6 +104,13 @@ function App() {
         </VStack>
       </Box>
 
+      <Banner tittel="Mange underenheter (50 stk)">
+        <Virksomhetsvelger
+          organisasjoner={MOCK_MANGE_UNDERENHETER}
+          onChange={setValgtVirksomhet}
+        />
+      </Banner>
+
       <h2>Andre tilgjengelige komponenter</h2>
       <Banner tittel="Bare banner" />
 
@@ -115,6 +122,42 @@ function App() {
 }
 
 export default App;
+
+const MOCK_MANGE_UNDERENHETER = [
+  {
+    orgnr: orgnr(),
+    navn: faker.company.name(),
+    altinn3Tilganger: [],
+    altinn2Tilganger: [],
+    underenheter: Array.from({ length: 50 }, () => ({
+      orgnr: orgnr(),
+      navn: faker.company.name(),
+      underenheter: [],
+    })),
+  },
+  {
+    orgnr: orgnr(),
+    navn: faker.company.name(),
+    altinn3Tilganger: [],
+    altinn2Tilganger: [],
+    underenheter: Array.from({ length: 50 }, () => ({
+      orgnr: orgnr(),
+      navn: faker.company.name(),
+      underenheter: [],
+    })),
+  },
+  {
+    orgnr: orgnr(),
+    navn: faker.company.name(),
+    altinn3Tilganger: [],
+    altinn2Tilganger: [],
+    underenheter: Array.from({ length: 50 }, () => ({
+      orgnr: orgnr(),
+      navn: faker.company.name(),
+      underenheter: [],
+    })),
+  },
+];
 
 const MOCK_ORGANISASJONER = [
   {
