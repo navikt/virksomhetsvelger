@@ -1,7 +1,7 @@
 
 .root {
-    background-color: var(--ax-bg-default);
-    border-bottom: 1px solid var(--ax-border-neutral-subtle);
+    background-color: var(--ax-bg-default, var(--a-bg-default));
+    border-bottom: 1px solid var(--ax-border-neutral-subtle, var(--a-gray-300));
     padding: 1rem;
 }
 

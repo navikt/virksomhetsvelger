@@ -44,7 +44,7 @@ export const EnhetMedUnderenheter = ({
             }}
             style={{
               backgroundColor: organisasjon.ekspandert
-                ? "var(--a-surface-action-subtle"
+                ? "var(--ax-bg-accent-soft, var(--a-surface-action-subtle))"
                 : "transparent",
             }}
           >

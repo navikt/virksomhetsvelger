@@ -1,6 +1,6 @@
 .underenhetInnhold {
     width: 100%;
-    padding: var(--ax-space-12) var(--ax-space-16);
+    padding: var(--ax-space-12, var(--a-spacing-3)) var(--ax-space-16, var(--a-spacing-4));
     position: relative;
     overflow: visible;
 }
@@ -23,7 +23,7 @@
 
 @media (max-width: 520px) {
     .underenhetInnhold {
-        padding: var(--ax-space-16) 0;
+        padding: var(--ax-space-16, var(--a-spacing-4)) 0;
     }
 }
 
@@ -31,7 +31,7 @@
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
-    gap: var(--ax-space-16);
+    gap: var(--ax-space-16, var(--a-spacing-4));
 }
 
 .underenhetTekst {

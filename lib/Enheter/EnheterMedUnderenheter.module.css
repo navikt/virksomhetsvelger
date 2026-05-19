@@ -1,29 +1,45 @@
+.enhet :global(.navds-accordion__header),
+.enhet :global(.navds-accordion__header:hover),
+.enhet :global(.navds-accordion__header:active),
 .enhet :global(.aksel-accordion__header),
 .enhet :global(.aksel-accordion__header:hover),
 .enhet :global(.aksel-accordion__header:active) {
     border: none;
 }
 
+.enhet :global(.navds-accordion__header),
 .enhet :global(.aksel-accordion__header) {
     align-items: center;
-    border-radius: var(--ax-radius-8);
+    border-radius: var(--ax-radius-8, var(--a-border-radius-medium));
     width: 100%;
     box-sizing: border-box;
 }
 
+.enhet :global(.navds-accordion__header)::before,
+.enhet :global(.navds-accordion__header)::after,
 .enhet :global(.aksel-accordion__header)::before,
 .enhet :global(.aksel-accordion__header)::after {
     display: none;
 }
 
+.enhet :global(.navds-accordion__content),
+.enhet :global(.aksel-accordion__content) {
+    padding: 0;
+}
+
+
+.enhet :global(.navds-accordion__item),
+.enhet :global(.aksel-accordion__item) {
+    border: none;
+}
 
 .enhet {
-    border-radius: var(--ax-radius-8);
+    border-radius: var(--ax-radius-8, var(--a-border-radius-medium));
     background-color: white;
 }
 
 .underenheterWrapper {
-    padding: var(--ax-space-8);
+    padding: var(--ax-space-8, var(--a-spacing-2));
     max-height: 0;
     opacity: 0;
     overflow: hidden;
@@ -40,7 +56,7 @@
 .underenheter {
     display: flex;
     flex-direction: column;
-    gap: var(--ax-space-4);
+    gap: var(--ax-space-4, var(--a-spacing-1));
     padding: 0 0 0 16px;
     list-style: none;
     overflow: visible;
