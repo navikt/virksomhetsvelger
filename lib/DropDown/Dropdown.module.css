@@ -7,9 +7,9 @@
   top: 5rem;
   width: 100%;
   max-width: 30rem;
-  border: solid 2px var(--a-deepblue-700);
+  border: solid 2px var(--ax-border-accent-strong, var(--a-deepblue-700));
   border-radius: 4px;
-  background-color: var(--a-bg-subtle);
+  background-color: var(--ax-bg-neutral-soft, var(--a-bg-subtle));
   max-height: 65vh;
   overflow-y: auto;
 }
