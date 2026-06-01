@@ -72,6 +72,23 @@
 .popupHeader {
     display: flex;
     gap: 0.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: var(--ax-bg-neutral-soft, var(--a-bg-subtle));
+    padding-bottom: var(--ax-space-8, var(--a-spacing-2));
+}
+
+.popupHeader input {
+    background-color: var(--ax-bg-default, var(--a-bg-default, white));
+}
+
+.popupHeader :global(.aksel-search__input) {
+    background-color: var(--ax-bg-default, var(--a-bg-default, white));
+}
+
+.popupHeader :global(.navds-search__input) {
+    background-color: var(--ax-bg-default, var(--a-bg-default, white));
 }
 
 
