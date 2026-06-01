@@ -16,6 +16,7 @@ const Velger = ({ friKomponent }: { friKomponent?: boolean }) => {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
   const valgtEnhetRef = useRef<HTMLButtonElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const [åpen, setÅpen] = useState<boolean>(false);
 
   const { søketekst, setSøketekst, valgtOrganisasjon, velgUnderenhet } =
@@ -89,6 +90,7 @@ const Velger = ({ friKomponent }: { friKomponent?: boolean }) => {
           ariaLabel="Virksomhetsvelger"
           friKomponent={true}
           erApen={åpen}
+          ref={dropdownRef}
         >
           <FocusTrap
             focusTrapOptions={{
@@ -100,6 +102,15 @@ const Velger = ({ friKomponent }: { friKomponent?: boolean }) => {
                 ) {
                   /**
                    * Knappen flipper også `åpen`. Om vi også flipper, så flippes `åpen` fram og tilbake.
+                   **/
+                } else if (
+                  dropdownRef.current &&
+                  e.target instanceof Node &&
+                  dropdownRef.current.contains(e.target)
+                ) {
+                  /**
+                   * Klikk på scrollbar treffer panel-elementet (utenfor FocusTrap).
+                   * Ikke lukk dropdown i dette tilfellet.
                    **/
                 } else {
                   setÅpen(false);
