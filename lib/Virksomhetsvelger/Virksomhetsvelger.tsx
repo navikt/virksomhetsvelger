@@ -66,7 +66,7 @@ const Velger = ({ friKomponent }: { friKomponent?: boolean }) => {
           type="button"
           variant="secondary"
           ref={buttonRef}
-          aria-label={`Virksomhetsmeny. Valgt virksomhet er ${valgtOrganisasjon.navn} med virksomhetsnummer ${valgtOrganisasjon.orgnr}`}
+          aria-label={`${valgtOrganisasjon.navn}, org.nr. ${formatOrgNr(valgtOrganisasjon.orgnr)}, åpne virksomhetsmeny`}
           aria-haspopup={true}
           aria-expanded={åpen}
         >
