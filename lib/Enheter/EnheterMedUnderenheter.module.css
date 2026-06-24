@@ -48,8 +48,9 @@
 }
 
 .underenheterWrapper[data-expanded="true"] {
-    max-height: 1000px;
+    max-height: none;
     opacity: 1;
+    overflow: visible;
     pointer-events: auto;
 }
 
