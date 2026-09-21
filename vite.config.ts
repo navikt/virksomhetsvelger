@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import { resolve } from "path";
 import react from "@vitejs/plugin-react-swc";
-import dts from "vite-plugin-dts";
+import dts from "unplugin-dts/vite";
 
 // setup for building a library with vitejs
 // based on https://github.com/receter/my-component-library/blob/no-css-injection
@@ -11,7 +11,7 @@ export default defineConfig({
     react(),
     dts({
       tsconfigPath: "./tsconfig.lib.json",
-      rollupTypes: true,
+      bundleTypes: true,
     }),
   ],
   build: {
