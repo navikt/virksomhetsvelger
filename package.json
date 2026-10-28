@@ -1,7 +1,7 @@
 {
   "name": "@navikt/virksomhetsvelger",
   "private": false,
-  "version": "2.1.1",
+  "version": "2.1.2",
   "type": "module",
   "main": "./dist/main.js",
   "types": "./dist/main.d.ts",
@@ -41,15 +41,15 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.5",
-    "@faker-js/faker": "^10.5.0",
-    "@microsoft/api-extractor": "^7.59.1",
-    "@navikt/aksel-icons": "^8.16.1",
-    "@navikt/ds-css": "^8.16.1",
-    "@navikt/ds-react": "^8.16.1",
+    "@faker-js/faker": "^10.6.0",
+    "@microsoft/api-extractor": "^7.60.0",
+    "@navikt/aksel-icons": "^8.20.1",
+    "@navikt/ds-css": "^8.20.1",
+    "@navikt/ds-react": "^8.20.1",
     "@navikt/nav-dekoratoren-moduler": "4.5.0",
     "@types/node": "22.15.3",
-    "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.4",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react-swc": "^3.11.0",
     "eslint": "^9.39.5",
     "eslint-plugin-react-hooks": "7.0.1",
@@ -57,15 +57,15 @@
     "globals": "^16.5.0",
     "npm-run-all": "4.1.5",
     "prettier": "3.5.3",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
     "typescript": "5.9.3",
     "typescript-eslint": "8.51.0",
-    "unplugin-dts": "^1.1.1",
-    "vite": "^7.3.6",
-    "vitest": "5.0.1"
+    "unplugin-dts": "^1.1.2",
+    "vite": "^7.3.7",
+    "vitest": "^5.0.5"
   },
   "dependencies": {
-    "focus-trap-react": "11.0.4"
+    "focus-trap-react": "^11.0.6"
   }
 }
