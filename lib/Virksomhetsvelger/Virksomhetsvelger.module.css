@@ -38,6 +38,15 @@
     background: var(--ax-bg-default, var(--a-bg-default));
 }
 
+/*
+ * Som Aksel Select: vis fokusring på :focus, ikke bare :focus-visible.
+ * Ellers vises ikke fokus når velgeren fokuseres fra en ErrorSummary-lenke eller setFocus etter et museklikk.
+ */
+.friKomponent .virksomhetsvelger:focus {
+    outline: 3px solid var(--ax-border-focus, var(--a-border-focus));
+    outline-offset: 3px;
+}
+
 .innhold svg {
     width: 1.25rem;
     height: 1.25rem;

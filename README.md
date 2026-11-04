@@ -37,6 +37,43 @@ Oppdaterte eksempler på bruk finner du i demo appen under [src/App.tsx](src/App
 
 Live demo: https://navikt.github.io/virksomhetsvelger/
 
+### Bruk i skjema med feiloppsummering
+
+`id`, `aria-describedby`, `aria-invalid` og `ref` settes på knappen som åpner velgeren.
+Da kan `<ErrorSummary.Item href="#id">` lenke til velgeren, og react-hook-form kan flytte fokus til den
+med `setFocus` og `setError(..., { shouldFocus: true })`.
+
+```tsx
+<Controller
+  name="virksomhet.virksomhetsnummer"
+  control={control}
+  render={({ field, fieldState }) => (
+    <>
+      <Virksomhetsvelger
+        ref={field.ref}
+        id="virksomhet.virksomhetsnummer"
+        aria-invalid={!!fieldState.error}
+        aria-describedby={fieldState.error ? "virksomhet-feil" : undefined}
+        organisasjoner={organisasjoner}
+        initValgtOrgnr={field.value}
+        onChange={(org) => {
+          // velgeren kaller onChange på nytt når funksjonen endres; ikke overskriv feil fra setError
+          if (org.orgnr !== field.value) field.onChange(org.orgnr);
+        }}
+        friKomponent
+      />
+      {fieldState.error && (
+        <ErrorMessage id="virksomhet-feil">{fieldState.error.message}</ErrorMessage>
+      )}
+    </>
+  )}
+/>
+
+<ErrorSummary>
+  <ErrorSummary.Item href="#virksomhet.virksomhetsnummer">Velg virksomhet</ErrorSummary.Item>
+</ErrorSummary>
+```
+
 ## Lokal Utvikling
 
 Denne appen er bygget med vite i library mode: https://vite.dev/guide/build.html#library-mode

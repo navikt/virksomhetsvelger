@@ -1,4 +1,11 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import {
+  forwardRef,
+  useContext,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
 import { Accordion, BodyShort, Button, Detail, Search } from "@navikt/ds-react";
 import { ChevronDownIcon, ChevronUpIcon, XMarkIcon } from "@navikt/aksel-icons";
 import { FocusTrap } from "focus-trap-react";
@@ -11,9 +18,25 @@ import { EnhetMedUnderenheter } from "../Enheter/EnheterMedUnderenheter";
 import { VirksomhetsvelgerContext } from "./VirksomhetsvelgerContext";
 import { VirksomhetsvelgerProvider } from "./VirksomhetsvelgerProvider";
 
-const Velger = ({ friKomponent }: { friKomponent?: boolean }) => {
+type VelgerProps = {
+  friKomponent?: boolean;
+  id?: string;
+  "aria-describedby"?: string;
+  "aria-invalid"?: boolean;
+};
+
+const Velger = forwardRef<HTMLButtonElement, VelgerProps>(function Velger(
+  {
+    friKomponent,
+    id,
+    "aria-describedby": ariaDescribedby,
+    "aria-invalid": ariaInvalid,
+  },
+  ref,
+) {
   const dropdownId = "VirksomhetsvelgerPopup";
   const buttonRef = useRef<HTMLButtonElement>(null);
+  useImperativeHandle(ref, () => buttonRef.current as HTMLButtonElement, []);
   const searchRef = useRef<HTMLInputElement>(null);
   const valgtEnhetRef = useRef<HTMLButtonElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -61,6 +84,7 @@ const Velger = ({ friKomponent }: { friKomponent?: boolean }) => {
     valgtOrganisasjon && (
       <div className={`${friKomponent ? styles.friKomponent : ""}`}>
         <Button
+          id={id}
           className={styles.virksomhetsvelger}
           onClick={() => setÅpen((prev) => !prev)}
           type="button"
@@ -69,6 +93,8 @@ const Velger = ({ friKomponent }: { friKomponent?: boolean }) => {
           aria-label={`${valgtOrganisasjon.navn}, org.nr. ${formatOrgNr(valgtOrganisasjon.orgnr)}, åpne virksomhetsmeny`}
           aria-haspopup={true}
           aria-expanded={åpen}
+          aria-describedby={ariaDescribedby}
+          aria-invalid={ariaInvalid}
         >
           <div className={styles.innhold}>
             <div className={styles.tekst}>
@@ -181,7 +207,7 @@ const Velger = ({ friKomponent }: { friKomponent?: boolean }) => {
       </div>
     )
   );
-};
+});
 
 export interface Organisasjon {
   orgnr: string;
@@ -189,17 +215,31 @@ export interface Organisasjon {
   underenheter: Organisasjon[];
 }
 
-export const Virksomhetsvelger = ({
-  organisasjoner,
-  onChange,
-  initValgtOrgnr,
-  friKomponent,
-}: {
+export interface VirksomhetsvelgerProps {
   organisasjoner: Organisasjon[];
   onChange: (organisasjon: Organisasjon) => void;
   initValgtOrgnr?: string;
   friKomponent?: boolean;
-}) => {
+  /**
+   * Settes på knappen som åpner velgeren, slik at `<ErrorSummary.Item href="#id">` kan lenke til den.
+   */
+  id?: string;
+  "aria-describedby"?: string;
+  "aria-invalid"?: boolean;
+}
+
+/**
+ * `ref` peker på knappen som åpner velgeren. Send `field.ref` fra
+ * react-hook-form sin `Controller` hit, så flytter `setFocus` og
+ * `setError(..., { shouldFocus: true })` fokus til velgeren.
+ */
+export const Virksomhetsvelger = forwardRef<
+  HTMLButtonElement,
+  VirksomhetsvelgerProps
+>(function Virksomhetsvelger(
+  { organisasjoner, onChange, initValgtOrgnr, ...velgerProps },
+  ref,
+) {
   if (organisasjoner.length === 0) {
     return null;
   }
@@ -210,7 +250,7 @@ export const Virksomhetsvelger = ({
       onOrganisasjonChange={onChange}
       initValgtOrgnr={initValgtOrgnr}
     >
-      <Velger friKomponent={friKomponent} />
+      <Velger ref={ref} {...velgerProps} />
     </VirksomhetsvelgerProvider>
   );
-};
+});
