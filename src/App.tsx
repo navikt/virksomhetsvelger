@@ -2,17 +2,13 @@ import { fakerNB_NO as faker } from "@faker-js/faker";
 import styles from "./App.module.css";
 
 // https://nodejs.org/api/packages.html#packages_self_referencing_a_package_using_its_name
-import {
-  Banner,
-  Virksomhetsvelger,
-  type Organisasjon,
-} from "@navikt/virksomhetsvelger";
+import { Banner, Virksomhetsvelger } from "@navikt/virksomhetsvelger";
 import "@navikt/virksomhetsvelger/dist/assets/style.css";
 
 import "@navikt/ds-css";
 
 import { BellIcon } from "@navikt/aksel-icons";
-import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import {
   BodyShort,
   Box,
@@ -143,30 +139,17 @@ const VELGER_FEIL_ID = "skjema.virksomhetsnummer-feil";
 function SkjemaMedFeiloppsummering() {
   const velgerRef = useRef<HTMLButtonElement>(null);
   const feiloppsummeringRef = useRef<HTMLDivElement>(null);
-  const forhåndsvalgtOrgnr = useRef<string | null>(null);
-  const [valgt, setValgt] = useState<Organisasjon | null>(null);
-  const [feil, setFeil] = useState<string | null>(null);
   const [innsendinger, setInnsendinger] = useState(0);
+  const harFeil = innsendinger > 0;
+  const feil = "Simulert feil: velg en annen virksomhet.";
 
   useEffect(() => {
     if (innsendinger > 0) feiloppsummeringRef.current?.focus();
   }, [innsendinger]);
 
-  // Må være stabil: velgeren kaller onChange på nytt når funksjonen endres.
-  const velgVirksomhet = useCallback((org: Organisasjon) => {
-    forhåndsvalgtOrgnr.current ??= org.orgnr;
-    setValgt(org);
-    setFeil(null);
-  }, []);
-
   const sendInn = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (valgt?.orgnr === forhåndsvalgtOrgnr.current) {
-      setFeil("Deltaker er ikke ansatt i valgt virksomhet. Velg en annen.");
-      setInnsendinger((n) => n + 1);
-    } else {
-      setFeil(null);
-    }
+    setInnsendinger((n) => n + 1);
   };
 
   return (
@@ -175,21 +158,21 @@ function SkjemaMedFeiloppsummering() {
         <VStack gap="space-16">
           <h2>Velger i skjema med feiloppsummering</h2>
           <BodyShort>
-            Send inn med forhåndsvalgt virksomhet for å få en simulert feil.
-            Lenken i feiloppsummeringen flytter fokus til velgeren via{" "}
-            <code>id</code>. Knappen «Fokuser velgeren» gjør det samme via{" "}
-            <code>ref</code>, slik <code>setFocus</code> i react-hook-form gjør.
+            «Send inn» gir alltid feil. Lenken i feiloppsummeringen flytter
+            fokus til velgeren via <code>id</code>. Knappen «Fokuser velgeren»
+            gjør det samme via <code>ref</code>, slik <code>setFocus</code> i
+            react-hook-form gjør.
           </BodyShort>
           <Virksomhetsvelger
             ref={velgerRef}
             id={VELGER_ID}
-            aria-invalid={feil !== null}
-            aria-describedby={feil !== null ? VELGER_FEIL_ID : undefined}
+            aria-invalid={harFeil}
+            aria-describedby={harFeil ? VELGER_FEIL_ID : undefined}
             organisasjoner={MOCK_ORGANISASJONER}
-            onChange={velgVirksomhet}
+            onChange={() => {}}
             friKomponent
           />
-          {feil !== null && (
+          {harFeil && (
             <>
               <ErrorMessage id={VELGER_FEIL_ID}>{feil}</ErrorMessage>
               <ErrorSummary
