@@ -2,14 +2,28 @@ import { fakerNB_NO as faker } from "@faker-js/faker";
 import styles from "./App.module.css";
 
 // https://nodejs.org/api/packages.html#packages_self_referencing_a_package_using_its_name
-import { Banner, Virksomhetsvelger } from "@navikt/virksomhetsvelger";
+import {
+  Banner,
+  Virksomhetsvelger,
+  type Organisasjon,
+} from "@navikt/virksomhetsvelger";
 import "@navikt/virksomhetsvelger/dist/assets/style.css";
 
 import "@navikt/ds-css";
 
 import { BellIcon } from "@navikt/aksel-icons";
-import { useState } from "react";
-import { Box, HGrid, TextField, VStack } from "@navikt/ds-react";
+import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
+import {
+  BodyShort,
+  Box,
+  Button,
+  ErrorMessage,
+  ErrorSummary,
+  HGrid,
+  HStack,
+  TextField,
+  VStack,
+} from "@navikt/ds-react";
 
 const orgnr = () =>
   faker.number.int({ min: 100000000, max: 999999999 }).toString();
@@ -104,6 +118,8 @@ function App() {
         </VStack>
       </Box>
 
+      <SkjemaMedFeiloppsummering />
+
       <Banner tittel="Mange underenheter (50 stk)">
         <Virksomhetsvelger
           organisasjoner={MOCK_MANGE_UNDERENHETER}
@@ -118,6 +134,87 @@ function App() {
         <BellIcon title="a11y-title" fontSize="1.5rem" />
       </Banner>
     </div>
+  );
+}
+
+const VELGER_ID = "skjema.virksomhetsnummer";
+const VELGER_FEIL_ID = "skjema.virksomhetsnummer-feil";
+
+function SkjemaMedFeiloppsummering() {
+  const velgerRef = useRef<HTMLButtonElement>(null);
+  const feiloppsummeringRef = useRef<HTMLDivElement>(null);
+  const forhåndsvalgtOrgnr = useRef<string | null>(null);
+  const [valgt, setValgt] = useState<Organisasjon | null>(null);
+  const [feil, setFeil] = useState<string | null>(null);
+  const [innsendinger, setInnsendinger] = useState(0);
+
+  useEffect(() => {
+    if (innsendinger > 0) feiloppsummeringRef.current?.focus();
+  }, [innsendinger]);
+
+  // Må være stabil: velgeren kaller onChange på nytt når funksjonen endres.
+  const velgVirksomhet = useCallback((org: Organisasjon) => {
+    forhåndsvalgtOrgnr.current ??= org.orgnr;
+    setValgt(org);
+    setFeil(null);
+  }, []);
+
+  const sendInn = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (valgt?.orgnr === forhåndsvalgtOrgnr.current) {
+      setFeil("Deltaker er ikke ansatt i valgt virksomhet. Velg en annen.");
+      setInnsendinger((n) => n + 1);
+    } else {
+      setFeil(null);
+    }
+  };
+
+  return (
+    <Box background="default" maxWidth="600px" padding="space-40">
+      <form onSubmit={sendInn} noValidate>
+        <VStack gap="space-16">
+          <h2>Velger i skjema med feiloppsummering</h2>
+          <BodyShort>
+            Send inn med forhåndsvalgt virksomhet for å få en simulert feil.
+            Lenken i feiloppsummeringen flytter fokus til velgeren via{" "}
+            <code>id</code>. Knappen «Fokuser velgeren» gjør det samme via{" "}
+            <code>ref</code>, slik <code>setFocus</code> i react-hook-form gjør.
+          </BodyShort>
+          <Virksomhetsvelger
+            ref={velgerRef}
+            id={VELGER_ID}
+            aria-invalid={feil !== null}
+            aria-describedby={feil !== null ? VELGER_FEIL_ID : undefined}
+            organisasjoner={MOCK_ORGANISASJONER}
+            onChange={velgVirksomhet}
+            friKomponent
+          />
+          {feil !== null && (
+            <>
+              <ErrorMessage id={VELGER_FEIL_ID}>{feil}</ErrorMessage>
+              <ErrorSummary
+                ref={feiloppsummeringRef}
+                heading="Du må rette disse feilene før du kan sende inn:"
+              >
+                <ErrorSummary.Item href={`#${VELGER_ID}`}>
+                  {feil}
+                </ErrorSummary.Item>
+              </ErrorSummary>
+            </>
+          )}
+          <HStack gap="space-16">
+            <Button type="submit">Send inn</Button>
+            <Button
+              type="button"
+              variant="secondary"
+              onClick={() => velgerRef.current?.focus()}
+            >
+              Fokuser velgeren
+            </Button>
+          </HStack>
+        </VStack>
+      </form>
+    </Box>
   );
 }
 

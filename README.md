@@ -56,7 +56,10 @@ med `setFocus` og `setError(..., { shouldFocus: true })`.
         aria-describedby={fieldState.error ? "virksomhet-feil" : undefined}
         organisasjoner={organisasjoner}
         initValgtOrgnr={field.value}
-        onChange={(org) => field.onChange(org.orgnr)}
+        onChange={(org) => {
+          // velgeren kaller onChange på nytt når funksjonen endres; ikke overskriv feil fra setError
+          if (org.orgnr !== field.value) field.onChange(org.orgnr);
+        }}
         friKomponent
       />
       {fieldState.error && (
